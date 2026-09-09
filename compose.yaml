@@ -1,10 +1,15 @@
 services:
   mysql:
-    image: 'mysql:latest'
-    environment:
-      - 'MYSQL_DATABASE=mydatabase'
-      - 'MYSQL_PASSWORD=secret'
-      - 'MYSQL_ROOT_PASSWORD=verysecret'
-      - 'MYSQL_USER=myuser'
+    image: 'mysql:8.4'                              # CAMBIADO: fijo la versión (LTS); 'latest' puede saltar a una major con sorpresas
+    environment:                                    # CAMBIADO: valores → variables; los reales viven en .env (no se commitean)
+      - 'MYSQL_DATABASE=${MYSQL_DATABASE}'
+      - 'MYSQL_USER=${MYSQL_USER}'
+      - 'MYSQL_PASSWORD=${MYSQL_PASSWORD}'
+      - 'MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}'
     ports:
-      - '3306'
+      - '${MYSQL_PORT:-3306}:3306'                   # CAMBIADO: puerto de host parametrizable (3306 por defecto)
+    volumes:                                         # AÑADIDO: persiste los datos entre reinicios
+      - 'mysql-data:/var/lib/mysql'
+
+volumes:                                            # AÑADIDO: declaración del volumen
+  mysql-data:
