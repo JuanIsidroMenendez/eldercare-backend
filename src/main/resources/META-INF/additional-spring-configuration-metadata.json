@@ -1,5 +1,12 @@
-{"properties": [{
-  "name": "api-endpoint",
-  "type": "java.lang.String",
-  "description": "A description for 'api-endpoint'"
-}]}
+{"properties": [
+  {
+    "name": "api-endpoint",
+    "type": "java.lang.String",
+    "description": "A description for 'api-endpoint'"
+  },
+  {
+    "name": "jwt.key",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.key'"
+  }
+]}
