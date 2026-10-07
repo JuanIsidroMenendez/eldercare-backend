@@ -44,7 +44,7 @@ public class ResidentEntity {
     private DependencyGrade dependencyGrade;
 
     @Embedded 
-    private Address adress;
+    private Address address;
 
     @Embedded 
     private ReferenceRelative referenceRelative;
