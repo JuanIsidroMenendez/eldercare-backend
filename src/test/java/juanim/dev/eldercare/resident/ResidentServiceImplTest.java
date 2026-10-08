@@ -9,7 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import juanim.dev.eldercare.resident.dtos.ResidentDTORequest;
 import juanim.dev.eldercare.resident.dtos.ResidentDTOResponse;
-import juanim.dev.eldercare.resident.objectValue.DependencyGrade;
+import juanim.dev.eldercare.resident.valueObject.DependencyGrade;
 
 import java.util.Optional;
 
