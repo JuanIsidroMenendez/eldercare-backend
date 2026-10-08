@@ -1,4 +1,4 @@
-package juanim.dev.eldercare.resident;
+package juanim.dev.eldercare.resident.objectValue;
 
 public enum DependencyGrade {
 

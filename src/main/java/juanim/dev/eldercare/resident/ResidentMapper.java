@@ -3,6 +3,8 @@ package juanim.dev.eldercare.resident;
 
 import juanim.dev.eldercare.resident.dtos.ResidentDTORequest;
 import juanim.dev.eldercare.resident.dtos.ResidentDTOResponse;
+import juanim.dev.eldercare.resident.objectValue.Address;
+import juanim.dev.eldercare.resident.objectValue.ReferenceRelative;
 
 import org.springframework.stereotype.Component;
 

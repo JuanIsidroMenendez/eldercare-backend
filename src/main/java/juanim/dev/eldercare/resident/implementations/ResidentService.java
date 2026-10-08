@@ -1,4 +1,4 @@
-package juanim.dev.eldercare.resident;
+package juanim.dev.eldercare.resident.implementations;
 
 import java.util.List;
 import juanim.dev.eldercare.resident.dtos.ResidentDTORequest;
