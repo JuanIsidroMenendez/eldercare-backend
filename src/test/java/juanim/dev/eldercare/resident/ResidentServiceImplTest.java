@@ -31,7 +31,7 @@ class ResidentServiceImplTest {
     private ResidentServiceImpl service;     
 
     @Test
-    void create_guardaYDevuelveElResidente() {
+    void createAndSaveReturnsResident() {
         
         ResidentDTORequest request = new ResidentDTORequest(
                 null, "Iker", "Ardu Engo", 85, DependencyGrade.GRADO_I,
@@ -55,7 +55,7 @@ class ResidentServiceImplTest {
     }
 
     @Test
-    void findById_inexistente_lanza404() {
+    void findByIdNoExistsAndLaunch404() {
      
         when(repository.findById(99L)).thenReturn(Optional.empty());
 
