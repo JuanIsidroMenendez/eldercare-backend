@@ -1,16 +1,15 @@
 package juanim.dev.eldercare.resident;
 
-public package juanim.dev.eldercare.resident;
-
-import juanim.dev.eldercare.resident.dto.ResidentDTORequest;
-import juanim.dev.eldercare.resident.dto.ResidentDTOResponse;
-import juanim.dev.eldercare.resident.mapper.ResidentMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.server.ResponseStatusException;
+
+import juanim.dev.eldercare.resident.dtos.ResidentDTORequest;
+import juanim.dev.eldercare.resident.dtos.ResidentDTOResponse;
+import juanim.dev.eldercare.resident.objectValue.DependencyGrade;
 
 import java.util.Optional;
 
@@ -19,21 +18,21 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)   // activa Mockito en JUnit 5
+@ExtendWith(MockitoExtension.class)   
 class ResidentServiceImplTest {
 
     @Mock
-    private ResidentRepository repository;   // dependencia simulada
+    private ResidentRepository repository;   
 
     @Mock
-    private ResidentMapper mapper;           // dependencia simulada
+    private ResidentMapper mapper;          
 
     @InjectMocks
-    private ResidentServiceImpl service;     // la clase bajo prueba, con los mocks inyectados
+    private ResidentServiceImpl service;     
 
     @Test
     void create_guardaYDevuelveElResidente() {
-        // given
+        
         ResidentDTORequest request = new ResidentDTORequest(
                 null, "Iker", "Ardu Engo", 85, DependencyGrade.GRADO_I,
                 "Calle de la Chavala 45", "Madrid", "28012",
@@ -48,27 +47,23 @@ class ResidentServiceImplTest {
         when(repository.save(entity)).thenReturn(entity);
         when(mapper.toResponse(entity)).thenReturn(response);
 
-        // when
         ResidentDTOResponse result = service.create(request);
 
-        // then
         assertThat(result.id()).isEqualTo(1L);
         assertThat(result.firstName()).isEqualTo("Iker");
-        verify(repository).save(entity);   // se guardó en el repositorio
+        verify(repository).save(entity);   
     }
 
     @Test
     void findById_inexistente_lanza404() {
-        // given
+     
         when(repository.findById(99L)).thenReturn(Optional.empty());
 
-        // when / then
         assertThatThrownBy(() -> service.findById(99L))
                 .isInstanceOf(ResponseStatusException.class)
                 .hasMessageContaining("Residente no encontrado");
 
-        verify(mapper, never()).toResponse(any());   // nunca llega a mapear
-    }
-} {
+        verify(mapper, never()).toResponse(any());   
     
+}
 }
