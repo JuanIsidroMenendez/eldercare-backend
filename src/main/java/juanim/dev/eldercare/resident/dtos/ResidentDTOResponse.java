@@ -1,6 +1,6 @@
 package juanim.dev.eldercare.resident.dtos;
 
-import juanim.dev.eldercare.resident.objectValue.DependencyGrade;
+import juanim.dev.eldercare.resident.valueObject.DependencyGrade;
 
 public record ResidentDTOResponse(
     Long id,
