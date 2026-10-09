@@ -6,5 +6,7 @@ public record RoomDTOResponse(
         Long id,
         String number,
         RoomType type,
-        int capacity         
+        int capacity,
+        int occupancy,
+        boolean full         
 ) {}
