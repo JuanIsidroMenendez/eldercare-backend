@@ -1,7 +1,10 @@
 package juanim.dev.eldercare.room;
 
+import juanim.dev.eldercare.resident.ResidentEntity;
+import juanim.dev.eldercare.resident.ResidentRepository;
 import juanim.dev.eldercare.room.dtos.RoomDTORequest;
 import juanim.dev.eldercare.room.dtos.RoomDTOResponse;
+import juanim.dev.eldercare.room.exceptions.RoomFullException;
 import juanim.dev.eldercare.room.implementations.RoomService;
 
 import lombok.RequiredArgsConstructor;
@@ -18,6 +21,7 @@ public class RoomServiceImpl implements RoomService {
 
     private final RoomRepository repository;
     private final RoomMapper mapper;
+    private final ResidentRepository residentRepository;
 
     @Override
     @Transactional
@@ -55,5 +59,39 @@ public class RoomServiceImpl implements RoomService {
         return repository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Habitación no encontrada: " + id));
+    }
+    // Asigna un residente a la habitación, respetando la capacidad.
+    @Override
+    @Transactional
+    public RoomDTOResponse assignResident(Long roomId, Long residentId) {
+        RoomEntity room = getOrThrow(roomId);
+        ResidentEntity resident = getResidentOrThrow(residentId);
+
+        if (room.getResidents().size() >= room.getType().getCapacity()) {
+            throw new RoomFullException("habitación completa");
+        }
+        resident.setRoom(room);
+        residentRepository.save(resident);
+        room.getResidents().add(resident);   
+        return mapper.toResponse(room);
+    }
+    // Retira a un residente de una habitación.
+    @Override
+    @Transactional
+    public RoomDTOResponse removeResident(Long roomId, Long residentId) {
+        RoomEntity room = getOrThrow(roomId);
+        ResidentEntity resident = getResidentOrThrow(residentId);
+
+        if (resident.getRoom() != null && resident.getRoom().getId().equals(roomId)) {
+            resident.setRoom(null);
+            residentRepository.save(resident);
+            room.getResidents().removeIf(r -> r.getId().equals(residentId));
+        }
+        return mapper.toResponse(room);
+    }
+    private ResidentEntity getResidentOrThrow(Long id) {
+        return residentRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Residente no encontrado: " + id));
     }
 }
