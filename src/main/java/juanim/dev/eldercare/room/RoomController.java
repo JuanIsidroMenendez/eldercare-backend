@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor 
 public class RoomController {
 
-    private final RoomService service;
+     private final RoomService service;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -42,5 +42,15 @@ public class RoomController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         service.delete(id);
+    }
+
+    @PostMapping("/{roomId}/residents/{residentId}")
+    public RoomDTOResponse assignResident(@PathVariable Long roomId, @PathVariable Long residentId) {
+        return service.assignResident(roomId, residentId);
+    }
+
+    @DeleteMapping("/{roomId}/residents/{residentId}")
+    public RoomDTOResponse removeResident(@PathVariable Long roomId, @PathVariable Long residentId) {
+        return service.removeResident(roomId, residentId);
     }
 }
