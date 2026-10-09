@@ -20,11 +20,15 @@ public class RoomMapper {
     }
 
     public RoomDTOResponse toResponse(RoomEntity e) {
+        int capacity = e.getType() != null ? e.getType().getCapacity() : 0;
+        int occupancy = e.getResidents() != null ? e.getResidents().size() : 0;
         return new RoomDTOResponse(
                 e.getId(),
                 e.getNumber(),
                 e.getType(),
-                e.getType() != null ? e.getType().getCapacity() : 0
+                e.getType() != null ? e.getType().getCapacity() : 0,
+                occupancy,
+                occupancy >= capacity
         );
     }
 }
