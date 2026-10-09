@@ -11,4 +11,8 @@ public interface RoomService {
     RoomDTOResponse findById(Long id);
     RoomDTOResponse update(Long id, RoomDTORequest request);
     void delete(Long id);
+    
+    // Añado y quito residentes a la habitación.
+    RoomDTOResponse assignResident(Long roomId, Long residentId);  
+    RoomDTOResponse removeResident(Long roomId, Long residentId);
 }
