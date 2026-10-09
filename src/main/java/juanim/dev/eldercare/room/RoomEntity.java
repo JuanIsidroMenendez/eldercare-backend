@@ -1,6 +1,10 @@
 package juanim.dev.eldercare.room;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
+import juanim.dev.eldercare.resident.ResidentEntity;
 import lombok.*;
 
 @Entity
@@ -21,6 +25,9 @@ public class RoomEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private RoomType type;          
-
+    private RoomType type;      
+    
+    @OneToMany(mappedBy = "room")
+    @Builder.Default
+    private List<ResidentEntity> residents = new ArrayList<>();
 }
