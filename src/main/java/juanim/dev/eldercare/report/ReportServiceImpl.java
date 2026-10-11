@@ -1,8 +1,5 @@
 package juanim.dev.eldercare.report;
 
-import juanim.dev.eldercare.report.ReportEntity;
-import juanim.dev.eldercare.report.ReportMapper;
-import juanim.dev.eldercare.report.ReportRepository;
 import juanim.dev.eldercare.report.dtos.ReportDTORequest;
 import juanim.dev.eldercare.report.dtos.ReportDTOResponse;
 import juanim.dev.eldercare.report.implementations.ReportService;
