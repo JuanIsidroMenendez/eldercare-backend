@@ -41,7 +41,8 @@ class ResidentServiceImplTest {
         ResidentDTOResponse response = new ResidentDTOResponse(
                 1L, null, "Iker", "Ardu Engo", 85, DependencyGrade.GRADO_I,
                 "Dependencia leve", "Calle de la Chavala 45", "Madrid", "28012",
-                "Joseppe Ardu", "Hijo", "600123456", "Marta Ruiz");
+                "Joseppe Ardu", "Hijo", "600123456", "Marta Ruiz", "104A");
+                
 
         when(mapper.toEntity(request)).thenReturn(entity);
         when(repository.save(entity)).thenReturn(entity);
