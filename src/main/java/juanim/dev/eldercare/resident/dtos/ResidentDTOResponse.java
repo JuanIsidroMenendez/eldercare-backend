@@ -16,6 +16,7 @@ public record ResidentDTOResponse(
     String familyName,
     String relationship,
     String phone,
-    String professional
+    String professional,
+    String roomNumber
     
 ){}

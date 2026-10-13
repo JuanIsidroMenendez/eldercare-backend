@@ -50,7 +50,8 @@ public class ResidentMapper {
                 e.getDependencyGrade() != null ? e.getDependencyGrade().getDescription() : null,
                 a.getStreet(), a.getCity(), a.getPostalCode(),
                 f.getName(), f.getRelationship(), f.getPhone(),
-                e.getProfessional()
+                e.getProfessional(),
+                e.getRoom() != null ? e.getRoom().getNumber() : null
         );
     }
 }
