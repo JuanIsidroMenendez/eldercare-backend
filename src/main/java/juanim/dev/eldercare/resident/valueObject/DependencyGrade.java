@@ -2,6 +2,7 @@ package juanim.dev.eldercare.resident.valueObject;
 
 public enum DependencyGrade {
 
+    SIN_GRADO("Sin grado de dependencia"),
     GRADO_I("Dependencia leve"),
     GRADO_II("Dependencia moderada"),
     GRADO_III("Dependencia severa");
