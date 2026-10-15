@@ -6,7 +6,7 @@ VALUES ('admin@eldercare.com', '$2b$10$h8ir6M9Cv0ST0hVKGn0Jie7rPUn1fED8EzyeXYtBI
 
 -- Habitaciones. Se siembran por ser estructura fija (no es algo que cambie).
 
-INSERT INTO rooms (number, type) VALUES
+INSERT IGNORE INTO rooms (number, type) VALUES
   ('101A', 'INDIVIDUAL'),
   ('102A', 'INDIVIDUAL'),
   ('103A', 'INDIVIDUAL'),
